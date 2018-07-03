@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+SCRIPT_FOLDER="$HOME/.config/Scripts"
+SCRIPT_FILE="$SCRIPT_FOLDER/$1"
+
+if [[ -f $SCRIPT_FILE ]]; then
+  echo file already exists boi
+ else
+	 echo '#!/bin/zsh' > $SCRIPT_FILE
+	 chmod +x $SCRIPT_FILE
+	 vim $SCRIPT_FILE
+fi
