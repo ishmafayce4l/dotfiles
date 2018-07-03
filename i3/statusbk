@@ -1,0 +1,63 @@
+icons = "awesome"
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+info_bg = "#DAA4ED"
+info_fg = "#2f343f"
+idle_bg = "#2f343f"
+idle_fg = "#65AED6"
+good_bg = "#7DE395"
+good_fg = "#2f343f"
+warning_bg = "#D3E37B"
+warning_fg = "#232c31"
+critical_bg = "#FA3E52"
+critical_fg = "#2f343f"
+separator_bg = "#2f343f"
+separator_fg = "#2f343f"
+
+[[block]]
+block = "music"
+player = "spotify"
+buttons = ["prev", "play", "next"]
+marquee = true
+marquee_speed = 0.8
+
+[[block]]
+block = "disk_space"
+path = "/home"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "net"
+interval = 1
+device = "wlp1s0"
+ip = true
+speed_up = false
+speed_down = false
+
+[[block]]
+block = "sound"
+step_width = 1
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block="battery"
+interval=1
+show = "percentage"
+
+[[block]]
+block = "time"
+interval = 1
+format = "%Y-%m-%d %I:%M:%S"

@@ -1,0 +1,264 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+# Definitions
+
+set $mod Mod4
+set $ex exec
+set $bind bindsym
+set $exal exec_always
+set $nost --no-startup-id
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:DejaVu Sans Mono 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# gaps
+gaps inner 10
+gaps outer 10
+smart_gaps on
+
+# thin borders
+hide_edge_borders both
+for_window [class="^.*"] border none
+
+# start a terminal
+$bind $mod+Return $ex $nost urxvt
+
+# thunar
+$bind $mod+m $ex $nost thunar
+
+# start chrome
+$bind $mod+c $ex $nost google-chrome-stable
+
+# kill focused window
+$bind $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+$bind $mod+d $ex $nost rofi -show drun  
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# 
+$bind $mod+Tab workspace back_and_forth
+
+# rofi font awesome
+$bind $mod+Shift+i $ex $nost fontawesome-menu -f /home/ismaeld/.config/Scripts/fa5-icon-list.txt -o '-i -columns 4'
+
+
+# change focus
+$bind $mod+j focus left
+$bind $mod+k focus down
+$bind $mod+l focus up
+$bind $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+$bind $mod+Left focus left
+$bind $mod+Down focus down
+$bind $mod+Up focus up
+$bind $mod+Right focus right
+
+# move focused window
+$bind $mod+Shift+j move left
+$bind $mod+Shift+k move down
+$bind $mod+Shift+l move up
+$bind $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+$bind $mod+Shift+Left move left
+$bind $mod+Shift+Down move down
+$bind $mod+Shift+Up move up
+$bind $mod+Shift+Right move right
+
+# split in horizontal orientation
+$bind $mod+h split h
+
+# split in vertical orientation
+$bind $mod+v split v
+
+# enter fullscreen mode for the focused container
+$bind $mod+f fullscreen toggle
+
+# start pipes
+$bind $mod+Shift+P $ex $nost urxvt $ex ~/.config/Scripts/pipes.sh 
+
+# change container layout (stacked, tabbed, toggle split)
+$bind $mod+s layout stacking
+$bind $mod+w layout tabbed
+$bind $mod+e layout toggle split
+
+# toggle tiling / floating
+$bind $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+$bind $mod+space focus mode_toggle
+
+# flash active window
+$bind $mod+grave $ex --no-startup-id bash ~/.config/Scripts/flash_win.sh
+
+
+# focus the parent container
+$bind $mod+a focus parent
+# focus the child container
+#bindsym $mod+d focus child
+
+# set workspaces
+
+set $workspace1 "1:    "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace10 "10: "
+
+# switch to workspace
+$bind $mod+1 workspace $workspace1
+$bind $mod+2 workspace $workspace2
+$bind $mod+3 workspace $workspace3
+$bind $mod+4 workspace $workspace4
+$bind $mod+5 workspace $workspace5
+$bind $mod+6 workspace $workspace6
+$bind $mod+7 workspace $workspace7
+$bind $mod+8 workspace $workspace8
+$bind $mod+9 workspace $workspace9
+$bind $mod+0 workspace $workspace10
+
+# move focused container to workspace
+$bind $mod+Shift+1 move container to workspace $workspace1
+$bind $mod+Shift+2 move container to workspace $workspace2
+$bind $mod+Shift+3 move container to workspace $workspace3
+$bind $mod+Shift+4 move container to workspace $workspace4
+$bind $mod+Shift+5 move container to workspace $workspace5
+$bind $mod+Shift+6 move container to workspace $workspace6
+$bind $mod+Shift+7 move container to workspace $workspace7
+$bind $mod+Shift+8 move container to workspace $workspace8
+$bind $mod+Shift+9 move container to workspace $workspace9
+$bind $mod+Shift+0 move container to workspace $workspace10
+
+# reload the configuration file
+$bind $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+$bind $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e $ex $nost "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        $bind j resize shrink width 10 px or 10 ppt
+        $bind k resize grow height 10 px or 10 ppt
+        $bind l resize shrink height 10 px or 10 ppt
+        $bind semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        $bind Left resize shrink width 10 px or 10 ppt
+        $bind Down resize grow height 10 px or 10 ppt
+        $bind Up resize shrink height 10 px or 10 ppt
+        $bind Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        $bind Return mode "default"
+        $bind Escape mode "default"
+}
+
+$bind $mod+r mode "resize"
+
+
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+#      $exal $nost ~/.config/polybar/launch.sh
+#
+#      font pango:DejaVu Sans Mono, FontAwesome 9
+#      position bottom
+#      status_command /usr/bin/i3status-rs ~/.config/i3/status.toml
+#      colors {
+#		background $bg-color
+#	    	separator #757575
+#		#                  border             background         text
+#		focused_workspace  $bg-color          $bg-color          $text-color
+#		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#	}
+#}
+
+# multimedia controls
+# Pulse Audio controls
+$bind XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+$bind XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+$bind XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Screen brightness controls
+$bind XF86MonBrightnessUp exec $nost xbacklight -inc 20 # increase screen brightness
+$bind XF86MonBrightnessDown exec $nost xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+$bind XF86AudioPlay exec $nost playerctl play
+$bind XF86AudioPause exec $nost playerctl pause
+$bind XF86AudioNext exec $nost playerctl next
+$bind XF86AudioPrev exec $nost playerctl previous
+
+# floating
+for_window [class="URxvt"] floating enable 12x19
+for_window [class="Pavucontrol"] floating enable 294x172
+for_window [class="Arandr"] floating enable 
+
+# execs
+$ex $nost compton -f --inactive-dim 0.3 --config /home/ismaeld/.config/compton.conf
+$exal --no-startup-id feh --bg-scale /home/ismaeld/Pictures/.rex.png
+$ex $nost xrdb .Xresources
+$exal $nost udiskie -2 &
+$exal $nost wal -i ~/Pictures/.rex.png
+$exal $nost ~/Scripts/i3listen.py
+$exal $nost ~/.config/polybar/launch.sh
+
+# assign workspaces
+assign [class="Arandr"] $workspace1
+assign [class="Pavucontrol"] $workspace1
+assign [class="Google-chrome"] $workspace2
+assign [class="Thunar"] $workspace3
+assign [class="Gpicview"] $workspace4
+assign [class="mpv"] $workspace4
+assign [class="Spotify"] $workspace5
+assign [class="libreoffice"] $workspace6
+assign [class="Code"] $workspace7
+assign [class="Steam"] $workspace8
+assign [class="Send Anywhere"] $workspace8
