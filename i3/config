@@ -240,6 +240,7 @@ $bind XF86AudioPrev exec $nost playerctl previous
 for_window [class="URxvt"] floating enable 12x19
 for_window [class="Pavucontrol"] floating enable 294x172
 for_window [class="Arandr"] floating enable 
+for_window [class="SimpleScreenRecorder"] floating enable
 
 # execs
 $ex $nost compton -f --inactive-dim 0.3 --config /home/ismaeld/.config/compton.conf
