@@ -263,3 +263,4 @@ assign [class="libreoffice"] $workspace6
 assign [class="Code"] $workspace7
 assign [class="Steam"] $workspace8
 assign [class="Send Anywhere"] $workspace8
+assign [class="pulse-sms"] $workspace8
